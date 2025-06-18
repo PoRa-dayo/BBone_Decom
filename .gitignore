@@ -2,3 +2,4 @@ __pycache__
 *.bbone
 *.json
 *.png
+.DS_Store
