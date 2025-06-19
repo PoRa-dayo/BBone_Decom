@@ -2,13 +2,15 @@
 import os
 import sys
 from unzip import unzip
+import shutil
 
 file_path = sys.argv[1]
 object_name, plugin_contents = unzip(file_path)
 
 os.makedirs("output", exist_ok=True)
+
 if os.path.exists(f"output/{object_name}"):
-    os.system(f"rm -rf output/{object_name}")
+    shutil.rmtree(f"output/{object_name}")
 
 os.makedirs(f"output/{object_name}", exist_ok=True)
 
