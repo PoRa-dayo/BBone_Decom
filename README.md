@@ -44,3 +44,6 @@ After running, an `outputs` folder will be generated in the `decoder` directory,
 1. Use Chrome browser to open `animation_player/index.html`
 2. Import all the contents (images + JSON) in the exported target folder. The JSON must be present.
 3. Click Play; if there are too many parts, it may be stuck at the beginning, please be patient.
+
+### Convert to PNG
+The Convert to PNG button will convert the frame currently shown into PNG format. Note that the size of the PNG is proportional to the size of the animation viewer page.
