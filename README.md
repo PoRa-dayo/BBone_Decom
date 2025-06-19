@@ -12,13 +12,13 @@ A tool made by SproutNan that decodes the bbone animation files of "Plants vs. Z
 
 ### Decoding bbone files
 
-In your BBone_Decom-main folder, open Terminal. If you haven't installed Python, type:
+In your BBone_Decom-main folder, open Terminal. If you haven't installed Python3, type:
 
 ```bash
 $ python3
 ```
 
-This will open the installer if you haven't installed Python. After installing, type:
+This will open the installer if you haven't installed Python3. After installing, type:
 
 ```bash
 $ exit
