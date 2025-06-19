@@ -23,3 +23,9 @@ $ python3 main.py /path/to/*.bbone
 1. 使用 Chrome 浏览器打开 `animation_player/index.html`
 2. 将导出的目标文件夹下所有内容（图片+JSON）导入
 3. 点击播放；如果零件数量太多可能一开始会卡顿，请耐心等待下
+
+## 依赖库
+
+```bash
+$ python3 -m pip install Pillow numpy
+```
