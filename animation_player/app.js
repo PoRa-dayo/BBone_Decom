@@ -27,7 +27,7 @@ createApp({
             isDataLoaded: false,
             totalFrames: 0,
             canvasWidth: 1200,
-            canvasHeight: 1000,
+            canvasHeight: 500,
             animationFrameId: null
         };
     },
