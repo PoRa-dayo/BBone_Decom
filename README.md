@@ -42,7 +42,7 @@ After running, an `outputs` folder will be generated in the `decoder` directory,
 ### Play Animation
 
 1. Use Chrome browser to open `animation_player/index.html`
-2. Import all the contents (images + JSON) in the exported target folder. The JSON must be present.
+2. Import all the contents (images + JSON) in the exported target folder. Not all sprites need to be imported, but the JSON must be present.
 3. Click Play; if there are too many parts, it may be stuck at the beginning, please be patient.
 
 ### Convert to PNG
