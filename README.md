@@ -37,7 +37,7 @@ $ cd decoder
 $ python3 main.py ../*.bbone
 ```
 
-After running, an `outputs` folder will be generated in the `decoder` directory, and the segmented animation data and image resources will be stored in the corresponding folder.
+After running, a new folder will be generated in the BBone_Decom-main folder, and the segmented animation data and image resources will be stored in the corresponding folder.
 
 ### Play Animation
 
