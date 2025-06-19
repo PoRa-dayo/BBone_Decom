@@ -4,71 +4,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PvZ Online 动画播放器</title>
+    <title>PvZ Online Animation Viewer</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 </head>
 
 <body>
     <div id="app">
-        <h1>PvZ Online 动画播放器</h1>
+        <h1>PvZ Online Animation Viewer</h1>
 
-        <div class="main-container">
+        <div class="main-container" id="MainContainer">
             <!-- 左侧控制面板 -->
             <div class="control-panel">
                 <div class="panel-section">
-                    <h3>文件上传</h3>
+                    <h3>File Upload</h3>
                     <div class="file-upload">
-                        <label for="files-upload">动画文件 (JSON 和图片):</label>
+                        <label for="files-upload">Animation files (JSON and images):</label>
                         <input type="file" id="files-upload" @change="handleFilesUpload" multiple accept=".json,image/*">
                     </div>
                 </div>
 
                 <div class="panel-section" v-if="isDataLoaded">
-                    <h3>动画控制</h3>
+                    <h3>Animation Controls</h3>
 
                     <div class="control-group">
                         <button class="btn primary" @click="togglePlayPause">
-                            {{ isPlaying ? '暂停' : '播放' }}
+                            {{ isPlaying ? 'Pause' : 'Play' }}
                         </button>
+                    </div>
+                    <div class="control-group">
+                        <button class="btn primary" @click="convertToPNG">Convert to PNG</button>
                     </div>
 
                     <div class="control-group">
-                        <label for="frame-slider">帧数: <span class="frame-label">{{ currentFrame }}</span></label>
+                        <label for="frame-slider">Frame: <span class="frame-label">{{ currentFrame }}</span></label>
                         <input type="range" id="frame-slider" :min="0" :max="totalFrames - 1" :value="currentFrame"
                             @input="onFrameSliderChange" class="frame-slider">
                     </div>
                 </div>
+                
+                <div class="panel-section" v-if="isDataLoaded">
+                    <h3>Canvas Size</h3>
+                    <div class="control-group">
+                        <label for="frame-slider">Width: <span class="frame-label">{{ canvasWidth }}</span></label>
+                        <input type="range" id="frame-slider" :min="1200" :max="3000" :value="canvasWidth"
+                            @input="onWidthSliderChange" class="frame-slider">
+                    </div>
+                    <div class="control-group">
+                        <label for="frame-slider">Height: <span class="frame-label">{{ canvasHeight }}</span></label>
+                        <input type="range" id="frame-slider" :min="1000" :max="3000" :value="canvasHeight"
+                            @input="onHeightSliderChange" class="frame-slider">
+                    </div>
+                </div>
 
                 <div class="panel-section" v-if="isDataLoaded && Object.keys(animationLabels).length > 0">
-                    <h3>动画片段</h3>
+                    <h3>Animation Clips</h3>
                     <div class="control-group">
-                        <label for="animation-select">选择动画:</label>
+                        <label for="animation-select">Select Clip:</label>
                         <select id="animation-select" v-model="selectedAnimation" class="animation-select">
-                            <option value="">完整动画</option>
+                            <option value="">Full animation</option>
                             <option v-for="(startFrame, name) in animationLabels" :key="name" :value="name">
-                                {{ name }} (第 {{ startFrame + 1 }} 帧)
+                                {{ name }} (From frame {{ startFrame + 1 }})
                             </option>
                         </select>
                     </div>
                     <div class="control-group">
                         <button class="btn secondary" @click="playSelectedAnimation">
-                            播放选中动画
+                            Play selected clip
                         </button>
                     </div>
                     <div class="control-group" v-if="isSegmentMode">
                         <label class="checkbox-label">
                             <input type="checkbox" v-model="loopSegment">
-                            循环当前片段
+                            Loop current clip
                         </label>
                     </div>
                 </div>
             </div>
-
-            <!-- 右侧画布区域 -->
             <div class="canvas-container">
                 <div class="canvas-header" v-if="!isDataLoaded">
-                    <p class="upload-prompt">请上传动画数据文件开始使用</p>
+                    <p class="upload-prompt">Please upload the animation data file to start using</p>
                 </div>
                 <div id="viewport" v-show="isDataLoaded">
                     <div id="armature-root">
@@ -78,8 +93,8 @@
             </div>
         </div>
     </div>
-
     <script src="app.js"></script>
+    <script src="html2canvas.min.js"></script>
 </body>
 
 </html>

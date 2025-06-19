@@ -26,6 +26,8 @@ createApp({
             // UI state
             isDataLoaded: false,
             totalFrames: 0,
+            canvasWidth: 1200,
+            canvasHeight: 1000,
             animationFrameId: null
         };
     },
@@ -140,12 +142,34 @@ createApp({
         togglePlayPause() {
             this.isPlaying = !this.isPlaying;
         },
+
+        convertToPNG() {
+            let ViewPort = document.querySelector("#viewport");
+            ViewPort.style.background="none";
+            html2canvas(ViewPort,{backgroundColor:null}).then(function(canvas) {
+                var html="<p>Here's your PNG. Feel free to right-click on the image below and Save Picture As.</p>";
+                html+="<img src='"+canvas.toDataURL()+"' alt='from canvas'/>";
+                var tab=window.open();
+                tab.document.write(html);
+                ViewPort.style.background="";
+            });
+        },
         
         onFrameSliderChange(event) {
             if (this.isPlaying) {
                 this.isPlaying = false;
             }
             this.currentFrame = parseInt(event.target.value, 10);
+        },
+
+        onWidthSliderChange(event) {
+            this.canvasWidth = event.target.value;
+            document.getElementById("MainContainer").style.width = this.canvasWidth + 'px';
+        },
+
+        onHeightSliderChange(event) {
+            this.canvasHeight = event.target.value;
+            document.getElementById("MainContainer").style.height = this.canvasHeight + 'px';
         },
         
         playSelectedAnimation() {

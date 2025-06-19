@@ -23,11 +23,12 @@ h1 {
 
 .main-container {
     display: flex;
-    max-width: 1400px;
+    width: 1200px;
     margin: 0 auto;
     gap: 30px;
     padding: 0 30px;
-    height: calc(100vh - 140px);
+    height: 1000px;
+    transition: width 0.2s ease, height 0.2s ease;
 }
 
 .control-panel {
@@ -286,40 +287,23 @@ h1 {
 }
 
 /* 响应式设计 */
-@media (max-width: 1200px) {
-    .main-container {
-        flex-direction: column;
-        height: auto;
-        gap: 20px;
-    }
-
+@media {
     .control-panel {
-        width: 100%;
-        order: 2;
+        order: 1;
     }
 
     .canvas-container {
-        order: 1;
-        height: 500px;
+        order: 2;
     }
 }
 
-@media (max-width: 768px) {
+@media {
     h1 {
         font-size: 1.5rem;
         margin: 20px 0;
     }
 
-    .main-container {
-        padding: 0 15px;
-        gap: 15px;
-    }
-
     .control-panel {
         padding: 20px;
-    }
-
-    .canvas-container {
-        height: 400px;
     }
 }
