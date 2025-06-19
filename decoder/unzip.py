@@ -1,11 +1,12 @@
 from struct import unpack
 import zlib
+from pathlib import Path
 
 def unzip(file_path):
     with open(file_path, "rb") as f:
         data = f.read() 
 
-    object_name = file_path.split("/")[-1].split(".")[0]
+    object_name = str(Path(file_path).name).split(".")[0]
 
     # 1. Read header
     file_type = unpack(">H", data[0:2])[0]

@@ -2,17 +2,19 @@
 import os
 import sys
 from unzip import unzip
+from pathlib import Path
 import shutil
 
 file_path = sys.argv[1]
 object_name, plugin_contents = unzip(file_path)
 
-os.makedirs("output", exist_ok=True)
+path_to_file = Path(file_path)
+parent_dir = path_to_file.parent
+result = Path(parent_dir, object_name)
+if result.exists():
+    shutil.rmtree(str(result), ignore_errors=True)
 
-if os.path.exists(f"output/{object_name}"):
-    shutil.rmtree(f"output/{object_name}")
-
-os.makedirs(f"output/{object_name}", exist_ok=True)
+result.mkdir(exist_ok=True)
 
 json_file = {}
 
@@ -26,7 +28,7 @@ plist = get_split_json(plugin_contents[1])
 
 json_file["plist"] = plist
 
-split_atlas(plist, f"output/{object_name}", atlas)
+split_atlas(plist, str(result), atlas)
 
 # Step3：提取动画帧标签
 from get_animation_labels import parse_frame_labels
@@ -44,4 +46,6 @@ animation_json = get_animation_json(plugin_contents[2])
 json_file["animation"] = animation_json
 
 # Step5：导出json
-json.dump(json_file, open(f"output/{object_name}/animation.json", "w"), indent=4, ensure_ascii=False)
+
+with open(f"{str(result)}/animation.json", "w") as out:
+    json.dump(json_file, out, indent=4, ensure_ascii=False)
