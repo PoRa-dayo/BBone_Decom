@@ -2,6 +2,8 @@
 
 A tool made by SproutNan that decodes the bbone animation files of "Plants vs. Zombies Online" into JSON format, and provides a front-end animation viewer for preview. English translation is provided by PoRa.
 
+Also check out this cool fork: https://github.com/Hamulous/BBone-to-XFL-Converter
+
 ## Functions
 
 - Decode bbone files to generate animation data and image resources in JSON format
